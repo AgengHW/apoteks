@@ -1,0 +1,327 @@
+/* Font dan reset */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #map {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background: #F5EEDC;
+  color: #183B4E;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  overflow: hidden;
+}
+
+/* Header */
+header {
+  background: #27548A;
+  color: white;
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Peta & Info */
+main {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 64px);
+  position: relative;
+}
+
+#map {
+  flex: 1;
+  z-index: 1;
+}
+
+#infoBox {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  max-width: 90vw;
+  max-height: 160px;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  color: #27548A;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+/* Zoom Leaflet */
+.leaflet-control-zoom {
+  position: absolute !important;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1001;
+}
+
+/* Toggle Sidebar */
+#sidebarToggle {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 1.5rem;
+  background: white;
+  color: #27548A;
+  border: 2px solid #27548A;
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar */
+#sidebar {
+  position: absolute;
+  top: 60px;
+  left: 16px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  color: #27548A;
+  font-weight: 500;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  animation: slideInLeft 0.4s ease-out;
+}
+
+#sidebar h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  color: #183B4E;
+}
+
+#sidebar button {
+  background: #27548A;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#sidebar button:hover {
+  background: #183B4E;
+}
+
+#sidebar h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #183B4E;
+}
+
+#sidebar ul {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Leaflet popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid #27548A;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.leaflet-routing-container {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  header {
+    font-size: 1.25rem;
+    padding: 12px 16px;
+  }
+
+  #infoBox {
+    font-size: 0.875rem;
+    padding: 8px 16px;
+    max-height: 120px;
+  }
+
+  #sidebar {
+    width: 90vw;
+    left: 5vw;
+  }
+}
+
+/* Pop-up daftar apotek */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 2px solid #183B4E;
+  padding: 20px;
+  z-index: 9999;
+  width: 30;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #183B4E;
+  font-weight: bold;
+}
+
+.popup h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #183B4E;
+  margin-bottom: 10px;
+}
+
+.popup-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup-list li {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.popup-list li:hover {
+  background-color: #DDA853;
+  color: white;
+}
+
+#zoom-controls {
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1001;
+}
+
+#zoom-controls button {
+  background: #27548A;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#zoom-controls button:hover {
+  background: #183B4E;
+}
+
+#toggleLayerBtn {
+  position: absolute;
+  right: 24px;
+  bottom: 5%; /* agar pas di bawah tombol zoom out */
+  background-color: #27548A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+#toggleLayerBtn:hover {
+  background-color: #183B4E;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.manual-popup {
+  position: fixed;
+  top: 12%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background: #fff;
+  border: 2px solid #d32f2f;
+  padding: 16px 24px;
+  border-radius: 12px;
+  z-index: 9999;
+  box-shadow: 0 0 16px rgba(0,0,0,0.2);
+  width: 300px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.manual-popup-content p {
+  margin: 0;
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.manual-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #d32f2f;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease-in-out;
+}
